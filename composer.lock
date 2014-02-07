@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "98929680fc54d479e301371ffe805808",
+    "hash": "bac82f1aa70fc9e35e32f3af3ef96de7",
     "packages": [
         {
             "name": "campaignmonitor/createsend-php",
-            "version": "v3.1.2",
+            "version": "v3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/campaignmonitor/createsend-php.git",
-                "reference": "4e2e82208f1b171c3455e387ba4f6aa1fe746650"
+                "reference": "6e88f8d4917e4d282076ff79fe5d992e52b3d206"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/campaignmonitor/createsend-php/zipball/4e2e82208f1b171c3455e387ba4f6aa1fe746650",
-                "reference": "4e2e82208f1b171c3455e387ba4f6aa1fe746650",
+                "url": "https://api.github.com/repos/campaignmonitor/createsend-php/zipball/6e88f8d4917e4d282076ff79fe5d992e52b3d206",
+                "reference": "6e88f8d4917e4d282076ff79fe5d992e52b3d206",
                 "shasum": ""
             },
             "require": {
@@ -57,27 +57,75 @@
                 "campaign",
                 "monitor"
             ],
-            "time": "2013-10-28 07:19:28"
+            "time": "2013-12-09 17:37:11"
         },
         {
             "name": "drewm/mailchimp-api",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/drewm/mailchimp-api",
-                "reference": "8ba87f3579"
+                "url": "https://github.com/drewm/mailchimp-api.git",
+                "reference": "9fb7d07283adb4cc61ecfa1c8f03f296036e77d8"
             },
-            "type": "library"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/9fb7d07283adb4cc61ecfa1c8f03f296036e77d8",
+                "reference": "9fb7d07283adb4cc61ecfa1c8f03f296036e77d8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Drewm": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Drew McLellan",
+                    "homepage": "http://allinthehead.com/"
+                }
+            ],
+            "description": "Super-simple, minimum abstraction MailChimp API v2 wrapper",
+            "homepage": "https://github.com/drewm/mailchimp-api",
+            "time": "2014-01-05 11:47:25"
         },
         {
-            "name": "felixmiddendorf/web2lead",
-            "version": "1.0.0",
+            "name": "patrickgalbraith/web2lead",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/felixmiddendorf/web2lead",
-                "reference": "eea046a299"
+                "url": "https://github.com/patrickgalbraith/web2lead.git",
+                "reference": "09e85a21764cbee09eab4f9f4566bd6bd3f3e4bc"
             },
-            "type": "library"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/patrickgalbraith/web2lead/zipball/09e85a21764cbee09eab4f9f4566bd6bd3f3e4bc",
+                "reference": "09e85a21764cbee09eab4f9f4566bd6bd3f3e4bc",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Felix Middendorf"
+                },
+                {
+                    "name": "Patrick Galbraith"
+                }
+            ],
+            "time": "2014-02-07 01:37:45"
         }
     ],
     "packages-dev": [
@@ -86,10 +134,10 @@
     "aliases": [
 
     ],
-    "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "patrickgalbraith/web2lead": 20
+    },
     "platform": [
 
     ],
