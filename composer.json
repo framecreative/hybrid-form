@@ -11,8 +11,8 @@
         "drewm/mailchimp-api": "*",
         "felixmiddendorf/web2lead" : "*"
     },
-    "repositories": {
-        "mailchimp-api": {
+    "repositories": [
+        {
             "type": "package",
             "package": {
                 "name": "drewm/mailchimp-api",
@@ -24,7 +24,7 @@
                 }
             }
         },
-        "web2lead": {
+        {
             "type": "package",
             "package": {
                 "name": "felixmiddendorf/web2lead",
@@ -36,7 +36,7 @@
                 }
             }
         }
-    },
+    ],
     "autoload": {
         "psr-0": {
             "Hybrid": "src/"
