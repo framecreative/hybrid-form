@@ -1,0 +1,49 @@
+{
+    "name": "hybrid/hybrid-form",
+    "authors": [
+        {
+            "name": "Patrick Galbraith",
+            "email": "patrick@hybridmarketing.com.au"
+        }
+    ],
+    "require": {
+        "campaignmonitor/createsend-php": "3.*",
+        "drewm/mailchimp-api": "*",
+        "felixmiddendorf/web2lead" : "*"
+    },
+    "repositories": {
+        "mailchimp-api": {
+            "type": "package",
+            "package": {
+                "name": "drewm/mailchimp-api",
+                "version": "1.0.0",
+                "source": {
+                    "url": "https://github.com/drewm/mailchimp-api",
+                    "type": "git",
+                    "reference": "8ba87f3579"
+                }
+            }
+        },
+        "web2lead": {
+            "type": "package",
+            "package": {
+                "name": "felixmiddendorf/web2lead",
+                "version": "1.0.0",
+                "source": {
+                    "url": "https://github.com/felixmiddendorf/web2lead",
+                    "type": "git",
+                    "reference": "eea046a299"
+                }
+            }
+        }
+    },
+    "autoload": {
+        "psr-0": {
+            "Hybrid": "src/"
+        },
+        "classmap": [
+            "vendor/drewm/mailchimp-api", 
+            "vendor/felixmiddendorf/web2lead/lib"
+        ]
+    }
+}
