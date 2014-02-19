@@ -42,6 +42,8 @@ class CSVFormHandler implements IFormHandler
                 $value = preg_replace('/\s+/', ' ', $value);
             }
 
+            $data['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+
             fputcsv($fp, array(
                 date(DATE_RFC2822),
                 ($valid ? 'VALID' : 'NOTVALID')

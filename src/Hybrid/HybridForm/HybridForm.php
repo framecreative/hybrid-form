@@ -1,6 +1,8 @@
 <?php
 namespace Hybrid\HybridForm;
 
+use Hybrid\HybridForm\HybridFormResult;
+
 class HybridForm
 {
     private $handlers;
@@ -26,21 +28,26 @@ class HybridForm
     }
 
     public function process() {
-        $valid = true;
+        $result = new HybridFormResult();
 
         foreach($this->validators as $validator) {
-            $result = $validators->validate($this->data);
+            $valid = $validator->validate($this->data);
 
-            if(!$result) {
-                $valid = false;
+            if(!$valid) {
+                $result->setValid(false);
+                $result->addError(get_class($validator), $validator->getLastError());
                 break;
             }
         }
 
         foreach($this->handlers as $handler) {
-            $handler->handle($this->data, $valid);
+            try {
+                $handler->handle($this->data, $result->isValid());
+            } catch (\Exception $e) {
+                error_log('HybridForm Handler Error: '.$e->getMessage());
+            }
         }
 
-        return $valid;
+        return $result;
     }
 }

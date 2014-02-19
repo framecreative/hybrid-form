@@ -3,7 +3,7 @@ namespace Hybrid\HybridForm\FormValidators;
 
 use \Hybrid\HybridForm\Exceptions;
 
-class HoneypotValidator implements IFormValidator
+class EmailValidator implements IFormValidator
 {
     private $options;
     private $requiredOptions;
@@ -26,8 +26,13 @@ class HoneypotValidator implements IFormValidator
     public function validate($data) {
         extract($this->options);
         
-        if(!empty($data[$field_name])) {
-            $this->errorMessage = 'Tsk tsk tsk!';
+        if(empty($data[$field_name])) {
+            $this->errorMessage = 'Required field "'.$field_name.'" not set';
+            return false;
+        }
+
+        if(filter_var($data[$field_name], FILTER_VALIDATE_EMAIL) === false) {
+            $this->errorMessage = 'Please enter a valid email address.';
             return false;
         }
 
