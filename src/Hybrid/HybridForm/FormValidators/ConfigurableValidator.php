@@ -8,7 +8,7 @@ class ConfigurableValidator implements IFormValidator
 {
     private $options;
     private $requiredOptions;
-    private $errorMessage;
+    private $errors;
 
     public function __construct($options) {
         $this->requiredOptions = array(
@@ -39,12 +39,20 @@ class ConfigurableValidator implements IFormValidator
         $result = $v->validate();
         
         if(!$result)
-            $this->errorMessage = $v->errors();
+            $this->errors = $v->errors();
+
+        print_r($v->errors()); exit;
 
         return $result;
     }
 
     public function getLastError() {
-        return $this->errorMessage;
+        $error_string = '';
+
+        foreach($this->errors as $error) {
+            $error_string .= ucfirst(strtolower(implode(", ", $error)));
+            $error_string .= "\r\n";
+        }
+        return $error_string;
     }
 }
