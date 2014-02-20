@@ -31,7 +31,7 @@ class CSVFormHandler implements IFormHandler
             $pre_exists = false;
         }
 
-        $fp = fopen($log_path, 'a');
+        $fp = @fopen($log_path, 'a');
         
         if($fp) {
             if(!$pre_exists && pathinfo($log_path, PATHINFO_EXTENSION) == 'php') {
