@@ -43,7 +43,7 @@ class CampaignMonitorFormHandler implements IFormHandler
 
         if(is_array($name_field)) {
             $name_data = array();
-            foreach($data as $key, $val) {
+            foreach($data as $key => $val) {
                 if(in_array($key, $name_field))
                     $name_data[] = $val;
             }
