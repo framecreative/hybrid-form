@@ -9,7 +9,8 @@
     "require": {
         "campaignmonitor/createsend-php": "3.*",
         "drewm/mailchimp-api": "*",
-        "patrickgalbraith/web2lead": "dev-master"
+        "patrickgalbraith/web2lead": "dev-master",
+        "vlucas/valitron": "*"
     },
     "autoload": {
         "psr-0": {
