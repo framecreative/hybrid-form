@@ -41,8 +41,6 @@ class ConfigurableValidator implements IFormValidator
         if(!$result)
             $this->errors = $v->errors();
 
-        print_r($v->errors()); exit;
-
         return $result;
     }
 
