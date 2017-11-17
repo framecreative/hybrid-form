@@ -1,9 +1,13 @@
 {
-    "name": "hybrid/hybrid-form",
+    "name": "frame-creative/hybrid-form",
     "authors": [
         {
             "name": "Patrick Galbraith",
             "email": "patrick@hybridmarketing.com.au"
+        },
+        {
+            "name": "Alex Bishop",
+            "email": "alex@framecreative.com.au"
         }
     ],
     "require": {
