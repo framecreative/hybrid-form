@@ -3,7 +3,7 @@ namespace Hybrid\HybridForm\FormHandlers;
 
 use \Hybrid\HybridForm\Exceptions;
 use \Hybrid\HybridForm\FormHandlers\IFormHandler;
-use \MailChimp;
+use \Drewm\MailChimp;
 
 class MailChimpFormHandler implements IFormHandler
 {
@@ -40,12 +40,20 @@ class MailChimpFormHandler implements IFormHandler
         $email = $data[$email_field];
         $first_name = $data[$first_name_field];
         $last_name = $data[$last_name_field];
+
+        $vars = array('FNAME'=>$first_name, 'LNAME'=>$last_name);    
+        
+        foreach ($this->options as $mc_name => $post_name){
+            if (isset($_POST[$post_name]) && $mc_name != "api_key" && $mc_name != "list_id" && $mc_name != "email_field" && $mc_name != "first_name_field" && $mc_name != "last_name_field"){
+                $vars[$mc_name] = $_POST[$post_name];
+            }
+        }
         
         $MailChimp = new MailChimp($api_key);
         $result = $MailChimp->call('lists/subscribe', array(
             'id'                => $list_id,
             'email'             => array('email'=>$email),
-            'merge_vars'        => array('FNAME'=>$first_name, 'LNAME'=>$last_name),
+            'merge_vars'        => $vars,
             'double_optin'      => false,
             'update_existing'   => true,
             'replace_interests' => false,
