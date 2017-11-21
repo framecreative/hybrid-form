@@ -1,9 +1,9 @@
 <?php
 namespace Hybrid\HybridForm\FormHandlers;
 
-use \Hybrid\HybridForm\Exceptions;
+use \Hybrid\HybridForm\Exceptions\RequiredOptionNotSet;
 use \Hybrid\HybridForm\FormHandlers\IFormHandler;
-use \Drewm\MailChimp\Mailchimp;
+use \Drewm\MailChimp\MailChimp;
 
 class MailChimpFormHandler implements IFormHandler
 {
