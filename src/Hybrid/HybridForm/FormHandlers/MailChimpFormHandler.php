@@ -3,7 +3,7 @@ namespace Hybrid\HybridForm\FormHandlers;
 
 use \Hybrid\HybridForm\Exceptions\RequiredOptionNotSet;
 use \Hybrid\HybridForm\FormHandlers\IFormHandler;
-use \Drewm\MailChimp\MailChimp;
+use \DrewM\MailChimp\MailChimp;
 
 class MailChimpFormHandler implements IFormHandler
 {
@@ -50,9 +50,8 @@ class MailChimpFormHandler implements IFormHandler
         }
 
         $MailChimp = new MailChimp($api_key);
-        $result = $MailChimp->call('lists/subscribe', array(
-            'id'                => $list_id,
-            'email'             => array('email'=>$email),
+        $result = $MailChimp->post("lists/$list_id/members", array(
+            'email_address'     => $email,
             'merge_vars'        => $vars,
             'double_optin'      => false,
             'update_existing'   => true,
