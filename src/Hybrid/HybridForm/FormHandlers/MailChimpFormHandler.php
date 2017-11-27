@@ -37,15 +37,15 @@ class MailChimpFormHandler implements IFormHandler
 
         extract($this->options);
 
-        $email = $data[$email_field];
-        $first_name = $data[$first_name_field];
-        $last_name = $data[$last_name_field];
+        $email = sanitize_email( $data[$email_field] );
+        $first_name = sanitize_text_field( $data[$first_name_field] );
+        $last_name = sanitize_text_field( $data[$last_name_field] );
 
         $vars = array('FNAME'=>$first_name, 'LNAME'=>$last_name);
 
         foreach ($this->options as $mc_name => $post_name){
             if (isset($_POST[$post_name]) && $mc_name != "api_key" && $mc_name != "list_id" && $mc_name != "email_field" && $mc_name != "first_name_field" && $mc_name != "last_name_field"){
-                $vars[$mc_name] = $_POST[$post_name];
+                $vars[$mc_name] = sanitize_text_field( $data[$post_name] );
             }
         }
 

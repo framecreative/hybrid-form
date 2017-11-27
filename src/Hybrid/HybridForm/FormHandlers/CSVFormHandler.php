@@ -26,19 +26,20 @@ class CSVFormHandler implements IFormHandler
     public function handle($data, $valid) {
         extract($this->options);
         $pre_exists = true;
-        
+
         if(!file_exists($log_path)) {
             $pre_exists = false;
         }
 
         $fp = @fopen($log_path, 'a');
-        
+
         if($fp) {
             if(!$pre_exists && pathinfo($log_path, PATHINFO_EXTENSION) == 'php') {
                 fwrite($fp, "<?php exit('Go Away!'); ?>".PHP_EOL);
             }
 
             foreach($data as &$value) {
+                $value = sanitize_text_field( $value );
                 $value = preg_replace('/\s+/', ' ', $value);
             }
 
@@ -48,7 +49,7 @@ class CSVFormHandler implements IFormHandler
                 date(DATE_RFC2822),
                 ($valid ? 'VALID' : 'NOTVALID')
             ) + $data);
-            
+
             fclose($fp);
         } else {
             error_log('Failed to open email log file pointer. '.$log_path);

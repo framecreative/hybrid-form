@@ -38,36 +38,38 @@ class Web2LeadFormHandler implements IFormHandler
         if(!$valid) {
             return;
         }
-        
+
         extract($this->options);
 
-        $email = isset($data[$email_field]) ? $data[$email_field] : '';
+        $email = isset($data[$email_field]) ? sanitize_text_field( $data[$email_field] ) : '';
 
         if(isset($data[$full_name_field])) {
-            $full_name = trim($data[$full_name_field]);
+            $full_name = trim( sanitize_text_field( $data[$full_name_field] ) );
             $full_name = explode(' ', $full_name);
             $first_name = count($full_name) > 1 ? implode(' ', array_slice($full_name, 0, -1)) : $full_name[0];
             $last_name = count($full_name) > 1 ? end($full_name) : '';
         } else {
-            $first_name = isset($data[$first_name_field]) ? $data[$first_name_field] : '';
-            $last_name = isset($data[$last_name_field]) ? $data[$last_name_field] : '';
+            $first_name = isset($data[$first_name_field]) ? sanitize_text_field( $data[$first_name_field] ) : '';
+            $last_name = isset($data[$last_name_field]) ? sanitize_text_field( $data[$last_name_field] ) : '';
         }
 
         foreach($data as $key => $value) {
             if($key == $email_field || $key == $first_name_field || $key == $last_name_field)
                 continue;
 
+            $key = sanitize_text_field( $key );
+            $value = sanitize_text_field( $value );
             $custom_fields[$key] = $value;
         }
 
         $web2lead = new Web2Lead($org_id);
-		
+
 		if(!empty($data['lead_source'])) {
 			$web2lead->setLeadSource($data['lead_source']);
 		} else {
 			$web2lead->setLeadSource($lead_source);
 		}
-        
+
         $result = $web2lead->toSalesforce(array(
            'first_name' => $first_name,
            'last_name' => $last_name,

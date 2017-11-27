@@ -40,15 +40,17 @@ class MailFormHandler implements IFormHandler
 
         //Automatically add all data
         foreach($data as $key => $value)
+            $key = sanitize_text_field( $key );
+            $value = sanitize_text_field( $value );
             $fields[$key] = array(ucwords(str_replace(array('_','-'), ' ', $key)), $value);
-        
+
         //Add additional fields
         $fields = $fields + array(
             'sent_at'     => array("Sent at", date("Y-m-d H:i:s")),
             'senders_ip'  => array("Sender's IP", $_SERVER['REMOTE_ADDR'])
         );
 
-        //Set up email body 
+        //Set up email body
         $body = '';
         foreach($fields as $field)
             $body .= $field[0].': '.strip_tags($field[1])."\r\n\r\n";
@@ -56,7 +58,7 @@ class MailFormHandler implements IFormHandler
 
         // Additional headers
         $headers = "From: ".$from."\r\n";
-        
+
         //Send mail
         mail($to, $subject, $body, $headers);
     }
