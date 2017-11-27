@@ -1,5 +1,6 @@
 {
     "name": "framecreative/hybrid-form",
+    "type": "wordpress-plugin",
     "authors": [
         {
             "name": "Patrick Galbraith",
