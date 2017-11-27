@@ -43,7 +43,7 @@ class HybridFormPluginHandleForm {
         }
 
         if(isset($_POST['_form_id'])) {
-            $form_id = intval($_POST['_form_id']);
+            $form_id = absint($_POST['_form_id']);
         } else {
             $form_id = null;
         }
@@ -78,7 +78,7 @@ class HybridFormPluginHandleForm {
 
             $wp_post_id = false;
             if(isset($_POST['_post_id'])) {
-                $wp_post_id = intval($_POST['_post_id']);
+                $wp_post_id = absint($_POST['_post_id']);
             }
 
             // HOOK - Add validators
