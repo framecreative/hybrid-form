@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: HybridForm
-Version: 1.1.0
+Version: 1.2.0
 Plugin URI: http://hybridmarketing.com.au
 Description: Handles website forms and logs all wp_mail calls.
 Author: Patrick Galbraith
@@ -107,6 +107,9 @@ class HybridFormPlugin {
     }
 
     static function log_mail($args) {
+
+        if ( is_admin() ) return;
+
         $form = new HybridForm($args);
 
         $form->addHandler(new CSVFormHandler(array(
